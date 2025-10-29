@@ -1,19 +1,23 @@
+import React from "react";
 import { createContext, useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import axios from "axios";
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const AppContext = createContext();
 
 const AppContextProvider = ({ children }) => {
   const navigate = useNavigate();
 
+  const [token, setToken] = useState(null);
   const [image, setImage] = useState(false);
 
   const [resultImage, setResultImage] = useState(false);
+  const [userData, setUserData] = useState(null);
 
-  const backendUrl = "http://localhost:4000";
+  const backendUrl = "http://localhost:5000";
 
   const handleRegister = async (username, email, password) => {
     try {
@@ -81,7 +85,7 @@ const AppContextProvider = ({ children }) => {
     try {
       setImage(image);
       setResultImage(false);
-      navigate("/result");
+      navigate('/result');
 
       const formData = new FormData();
       image && formData.append("image", image);
