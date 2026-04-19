@@ -102,6 +102,13 @@ Frontend runs at:
 
 ---
 
+## Demo Link
+
+1. For Frontend - "https://bg-removal-topaz.vercel.app/"
+2. For Backend - "https://bgremoval-gfrz.onrender.com"
+
+---
+
 ## 🧪 Usage
 
 1. Upload an image
