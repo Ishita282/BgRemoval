@@ -18,7 +18,7 @@ The **BG Removal App** enables users to upload images and automatically remove t
 ## ✨ Features
 
 * 🧠 AI-powered background removal
-* 📤 Upload images بسهولة (drag & drop supported)
+* 📤 Upload images(drag & drop supported)
 * ⚡ Fast processing
 * 🖼️ High-quality output (transparent PNG)
 * ⬇️ Download processed images
@@ -39,30 +39,7 @@ The **BG Removal App** enables users to upload images and automatically remove t
 
 ### AI / Processing
 
-* Background removal API / ML model (e.g., remove.bg or similar)
-
----
-
-## 📂 Project Structure
-
-```bash id="h2k9fd"
-bg-removal/
-│
-├── app/
-│   ├── upload/
-│   ├── result/
-│   └── api/
-│
-├── components/
-│   ├── ui/
-│   └── image/
-│
-├── lib/
-│
-├── public/
-│
-└── README.md
-```
+* Background removal CLIPDROP API
 
 ---
 
@@ -70,7 +47,7 @@ bg-removal/
 
 ### 1. Clone the repository
 
-```bash id="7v4q1x"
+```bash
 git clone https://github.com/your-username/bg-removal.git
 cd bg-removal
 ```
@@ -79,7 +56,12 @@ cd bg-removal
 
 ### 2. Install dependencies
 
-```bash id="y1p8dn"
+1. In backend
+```bash
+npm install
+```
+2. In frontend
+```bash
 npm install
 ```
 
@@ -89,20 +71,34 @@ npm install
 
 Create a `.env` file:
 
-```env id="h9z2ld"
+```env
+PORT=4000
 API_KEY=your_background_removal_api_key
+CLIPDROP_API=your_clipdrop_api_key
 ```
 
 ---
 
 ### 4. Run the app
 
-```bash id="9n3xqp"
+1. In backend
+
+```bash
 npm run dev
 ```
 
-App runs at:
+Backend runs at:
+👉 [http://localhost:4000](http://localhost:4000)
+
+1. In frontend
+
+```bash
+npm run start
+```
+
+Frontend runs at:
 👉 [http://localhost:3000](http://localhost:3000)
+
 
 ---
 
@@ -112,12 +108,6 @@ App runs at:
 2. Click **Remove Background**
 3. Wait for processing
 4. Download the result
-
----
-
-## 📸 Screenshots
-
-*Add screenshots here (upload page, preview, result)*
 
 ---
 
@@ -135,7 +125,7 @@ App runs at:
 
 Contributions are welcome!
 
-```bash id="1k9xzm"
+```bash
 # Fork the repo
 git checkout -b feature-name
 git commit -m "Add feature"
