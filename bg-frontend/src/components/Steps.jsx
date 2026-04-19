@@ -1,57 +1,102 @@
 import React from "react";
 import { assets } from "../assets/assets/assets.js";
 
+const stepsData = [
+  {
+    icon: assets.upload_icon,
+    title: "Upload Image",
+    description:
+      "Select any image from your device. Supports JPG, PNG and more.",
+  },
+  {
+    icon: assets.remove_bg_icon,
+    title: "Remove Background",
+    description:
+      "Our AI automatically removes the background in seconds with high accuracy.",
+  },
+  {
+    icon: assets.download_icon,
+    title: "Download Image",
+    description:
+      "Download your image in high quality with a transparent background.",
+  },
+];
+
 const Steps = () => {
+
+  const handleCTAClick = () => {
+    const uploadSection = document.getElementById("upload-section");
+    if (uploadSection) {
+      uploadSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+
   return (
-    <div className="mx-4 lg:mx-44 py-20">
-      <h1 className="text-center text-2xl md:text-3xl pb-1 lg:text-4xl mt-4 font-semibold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
-        Steps to remove background <br /> image in seconds
-      </h1>
-      <div className="flex flex-col lg:flex-row gap-6 md:space-x-5 xl:mt-24 justify-center">
-        <div className="flex items-start gap-4 bg-white border p-7 pb-10 rounded-lg hover:scale-105 transition-all duration-500">
-          <img className="max-w-9" src={assets.upload_icon} alt="Upload Icon" />
-          <div>
-            <p className="text-xl font-medium">Upload Image</p>
-            <p className="text-sm text-black mt-1">
-              Click the upload button to select an image from your device.
-              Supported formats include JPEG, PNG, and more.
-            </p>
-          </div>
-        </div>
-        <div className="flex items-start gap-4 bg-white border p-7 pb-10 rounded-lg hover:scale-105 transition-all duration-500">
-          <img
-            className="max-w-9"
-            src={assets.remove_bg_icon}
-            alt="Remove Icon"
-          />
-          <div>
-            <p className="text-xl font-medium">Remove Background</p>
-            <p className="text-sm text-black mt-1">
-              Our AI-powered tool automatically detects and removes the
-              background from your image, leaving you with a clean subject.
-            </p>
-          </div>
-        </div>
-        <div className="flex items-start gap-4 bg-white border p-7 pb-10 rounded-lg hover:scale-105 transition-all duration-500">
-          <img
-            className="max-w-9"
-            src={assets.download_icon}
-            alt="Download Icon"
-          />
-          <div>
-            <p className="text-xl font-medium">Download Image</p>
-            <p className="text-sm text-black mt-1">
-              Once the background is removed, you can download the new image in
-              high resolution with a transparent background.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div className="mt-16 text-center">
-        <p className="text-lg text-white">
-          Experience the magic of effortless background removal. Try it now and
-          transform your images in seconds!
+    <div className="mx-4 lg:mx-44 py-24">
+      {/* HEADER */}
+      <div className="text-center max-w-2xl mx-auto">
+        <h1 className="text-2xl md:text-4xl font-semibold text-white">
+          Remove background in 3 simple steps
+        </h1>
+
+        <p className="mt-4 text-sm md:text-base text-gray-400">
+          No complexity. No editing skills required. Just upload and download.
         </p>
+      </div>
+
+      {/* STEPS FLOW */}
+      <div className="relative mt-16 flex flex-col lg:flex-row gap-10 justify-center items-stretch">
+        {/* CONNECTING LINE (desktop only UX polish) */}
+        <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-px bg-white/10" />
+
+        {stepsData.map((step, index) => (
+          <div
+            key={index}
+            className="relative flex-1 bg-white/5 border border-white/10 backdrop-blur-md
+                       p-6 rounded-2xl hover:bg-white/10 transition-all duration-300
+                       hover:scale-[1.02] z-10"
+          >
+            {/* STEP NUMBER BADGE */}
+            <div className="absolute -top-4 left-6 w-8 h-8 rounded-full bg-gradient-to-r from-blue-600 to-fuchsia-500 flex items-center justify-center text-white text-sm font-semibold shadow-lg">
+              {index + 1}
+            </div>
+
+            {/* ICON */}
+            <div className="mb-4">
+              <img
+                className="w-10 opacity-90"
+                src={step.icon}
+                alt={step.title}
+              />
+            </div>
+
+            {/* TITLE */}
+            <p className="text-lg font-semibold text-white">{step.title}</p>
+
+            {/* DESCRIPTION */}
+            <p className="text-sm text-gray-400 mt-2 leading-relaxed">
+              {step.description}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      {/* CTA */}
+      <div className="mt-20 text-center">
+        <p className="text-gray-400 mb-5 text-sm md:text-base">
+          Ready to transform your images instantly?
+        </p>
+
+        <button
+        onClick={handleCTAClick}
+          className="px-8 py-3 rounded-full bg-gradient-to-r from-blue-600 to-fuchsia-500
+                           text-white font-medium shadow-lg shadow-blue-500/20
+                           hover:scale-[1.03] active:scale-[0.98]
+                           transition-all duration-300"
+        >
+          Try It Now →
+        </button>
       </div>
     </div>
   );

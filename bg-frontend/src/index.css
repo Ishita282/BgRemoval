@@ -2,19 +2,104 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    background-color: #09162e;
+/* =========================
+   GLOBAL SAAS BASE SYSTEM
+========================= */
+
+body {
+    background: radial-gradient(circle at top, #0b1430 0%, #050814 60%, #000 100%);
+    color: white;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    scroll-behavior: smooth;
 }
 
-.slider{
-    -webkit-appearnce: none;
-    height: 100%;
-    background: transparent;
+/* Selection color (VERY underrated SaaS polish) */
+::selection {
+    background: #a855f7;
+    color: white;
 }
 
-.slider::-webkit-slider-thumb{
+/* Scrollbar (optional but premium feel) */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0a0f1f;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #2563eb, #a855f7);
+    border-radius: 10px;
+}
+
+/* =========================
+   SLIDER (UPGRADED FEEL)
+========================= */
+
+.slider {
+    -webkit-appearance: none;
     appearance: none;
-    width: 30px;
-    height: 30px;
-    background-position: center;
+    height: 100%;
+    width: 100%;
+    background: transparent;
+    outline: none;
+}
+
+/* Chrome / Safari */
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+
+    background: linear-gradient(135deg, #ffffff, #d1d5db);
+    cursor: pointer;
+
+    box-shadow:
+        0 0 10px rgba(168, 85, 247, 0.4),
+        0 4px 12px rgba(0, 0, 0, 0.4);
+
+    transition: transform 0.2s ease;
+}
+
+.slider::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+}
+
+/* Firefox */
+.slider::-moz-range-thumb {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+
+    background: linear-gradient(135deg, #ffffff, #d1d5db);
+    cursor: pointer;
+
+    box-shadow:
+        0 0 10px rgba(168, 85, 247, 0.4),
+        0 4px 12px rgba(0, 0, 0, 0.4);
+
+    transition: transform 0.2s ease;
+}
+
+/* =========================
+   UTILITY (OPTIONAL BUT POWERFUL)
+========================= */
+
+/* Soft glow utility for SaaS elements */
+.glow {
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.15);
+}
+
+/* Glass effect helper */
+.glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }

@@ -1,58 +1,102 @@
-import React from "react";
-import { useContext } from "react";
+import React, { useContext, useState } from "react";
 import video from "../assets/video.mp4";
-import { AppContext } from "../context/AppContext.jsx";
+import { AppContext } from "../context/AppContext";
 
 const Header = () => {
   const { removeBg } = useContext(AppContext);
+  const [loading, setLoading] = useState(false);
+
+  const handleFileChange = async (file) => {
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      alert("Please upload a valid image file.");
+      return;
+    }
+
+    setLoading(true);
+    await removeBg(file);
+    setLoading(false);
+  };
 
   return (
-    <div className="flex items-center justify-between max-sm:flex-col-reverse gap-y-10 px-4 mb-14 mt-10 lg:px-44 sm:mt-20">
-      {/*Left Side*/}
-      <div>
-        <h1 className="text-4xl xl:text-5xl font-bold text-white leading-tight">
-          {" "}
-          Remove the
-          <br className="max-md:hidden" />
-          <span className="bg-gradient-to-r font-rubik from-blue-600 to-fuchsia-300 bg-clip-text text-transparent">
-            {" "}
-            Background{" "}
+    <div className="flex flex-col lg:flex-row items-center justify-between gap-12 px-6 lg:px-44 mt-16 lg:mt-24 mb-20">
+
+      {/* LEFT CONTENT */}
+      <div className="max-w-xl text-center lg:text-left">
+
+        {/* BADGE (NEW UX ELEMENT) */}
+        <div className="inline-flex items-center px-3 py-1 mb-5 rounded-full bg-white/5 border border-white/10 text-xs text-gray-300">
+          ✨ AI Powered Background Removal
+        </div>
+
+        {/* HEADLINE */}
+        <h1 className="text-3xl md:text-5xl font-semibold text-white leading-tight">
+          Remove the{" "}
+          <span className="bg-gradient-to-r from-blue-500 to-fuchsia-400 bg-clip-text text-transparent">
+            Background
           </span>
-          from <br className="max-md:hidden" /> images for free
+          <br />
+          from images instantly
         </h1>
-        <p className="my-6 text-[15px] bg-gradient-to-r font-rubik from-red-300 to-purple-500 bg-clip-text text-transparent w-[90%]">
-          Easily remove the background from any image with just one click.
-          <br className="max-md:hidden" />
-          Whether you're creating product photos, profile pictures, or social
-          media content, our powerful background remover delivers clean,
-          professional results in seconds—no design skills needed.
-          <br className="max-md:hidden" />
-          Simply upload your image, and let our smart tool do the rest. Fast,
-          free, and effortless.
+
+        {/* DESCRIPTION */}
+        <p className="mt-6 text-sm md:text-base text-gray-400 leading-relaxed">
+          Upload your image and get a clean, professional background removal in seconds.
+          Perfect for products, profile pictures, and social media.
         </p>
-        <div>
+
+        {/* CTA AREA */}
+        <div className="mt-8">
+
           <input
-            onChange={(e) => removeBg(e.target.files[0])}
+            onChange={(e) => handleFileChange(e.target.files[0])}
             type="file"
             id="upload1"
             accept="image/*"
             hidden
           />
+
           <label
-            className="inline-flex gap-3 px-8 py-3.5 md:px-6 md:py-2.5 rounded-full cursor-pointer bg-gradient-to-r from-blue-600 to-fuchsia-500 m-auto hover:scale-105 transition-all duration-700 text-white"
             htmlFor="upload1"
+            className="inline-flex items-center justify-center gap-2 px-10 py-3 rounded-full cursor-pointer
+                       bg-gradient-to-r from-blue-600 to-fuchsia-500
+                       hover:scale-[1.03] active:scale-[0.98]
+                       transition-all duration-300 text-white font-medium shadow-lg shadow-blue-500/20"
           >
-            <span>Upload Image</span>
+            {loading ? "Processing..." : "Upload Image"}
           </label>
+
+          {/* TRUST TEXT */}
+          <p className="mt-3 text-xs text-gray-500">
+            No signup required • Free preview available
+          </p>
+
         </div>
       </div>
-      {/* Right side */}
+
+      {/* RIGHT VIDEO */}
       <div className="w-full max-w-lg">
-        <video className="rounded-3xl bg-transparent" autoPlay muted loop>
-          <source src={video} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+
+        <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/10">
+
+          <video
+            className="w-full h-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+          >
+            <source src={video} type="video/mp4" />
+          </video>
+
+          {/* SUBTLE OVERLAY FOR PREMIUM FEEL */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+
+        </div>
+
       </div>
+
     </div>
   );
 };
